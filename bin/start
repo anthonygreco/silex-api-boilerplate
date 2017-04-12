@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo ""
+echo "Server running at http://localhost:8001"
+
+cd public && php -S localhost:8001

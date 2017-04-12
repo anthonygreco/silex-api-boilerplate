@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rsync -vrltD --stats --human-readable --exclude='.DS_Store' --exclude='logs' --rsh='ssh -p22' ./public/ USER@DOMAIN:/PATH_TO_SITE/

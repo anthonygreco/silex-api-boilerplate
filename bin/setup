@@ -1,0 +1,51 @@
+#!/bin/bash
+
+set -e
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+
+echo
+echo "Checking for composer..."
+
+if [ ! -f /usr/local/bin/composer.phar ]; then
+    # maybe installed somewhere else?
+    COMPOSER=$(which composer)
+
+    if [[ "$COMPOSER" == "" ]]; then
+        echo
+        echo "Installing Composer to /usr/local/bin"
+
+        curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
+        COMPOSER=$(which composer)
+
+        echo
+        echo "Installing composer packages..."
+
+        COMPOSER install
+    else
+        echo
+        echo "Installing composer packages..."
+
+        COMPOSER install
+    fi
+else
+    echo
+    echo "Installing composer packages..."
+
+    php /usr/local/bin/composer.phar install
+fi
+
+echo
+echo -e "${GREEN}Setup complete!${NC}"
+
+echo
+echo -e "${RED}==============================================================================================${NC}"
+echo -e "${RED}Be sure to create a DB, import the default sql (in /db) and update config values accordingly!!${NC}"
+echo -e "${RED}==============================================================================================${NC}"
+
+echo
+echo -e "${GREEN}Starting server...${NC}"
+
+bin/start

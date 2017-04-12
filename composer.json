@@ -1,0 +1,10 @@
+{
+    "config": {
+        "vendor-dir": "public/vendor"
+    },
+    "require": {
+        "silex/silex": "~2.0.4",
+        "monolog/monolog": "~1.22.1",
+        "doctrine/dbal": "~2.5.12"
+    }
+}
