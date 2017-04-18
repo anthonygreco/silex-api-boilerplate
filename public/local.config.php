@@ -1,8 +1,6 @@
 <?php
 
-date_default_timezone_set('America/New_York');
-
-define('DEV', true);
+$dev = true;
 
 $dbConfig = [
     'driver' => 'pdo_mysql',

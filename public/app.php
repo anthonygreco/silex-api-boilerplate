@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
-$app = new Application();
 
 $app['debug'] = DEV;
 
@@ -58,12 +57,4 @@ $app->get('/', function() use ($app) {
     return $app->json($app['db']->fetchAll($sql), 200);
 });
 
-// check for cli
-if (isset($argv) && count($argv) > 0) {
-    define('CLI', true);
-    list($_, $method, $path) = $argv;
-    $request = Request::create($path, $method);
-    $app->run($request);
-} else {
-    $app->run();
-}
+return $app;
